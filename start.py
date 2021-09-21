@@ -1,7 +1,7 @@
 '''
 Author: FunctionSir
 Date: 2021-09-11 21:42:18
-LastEditTime: 2021-09-21 21:26:29
+LastEditTime: 2021-09-21 21:43:46
 LastEditors: FunctionSir
 Description: 起始
 FilePath: /Trknights/start.py
