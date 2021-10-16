@@ -1,16 +1,16 @@
 '''
 Author: FunctionSir
 Date: 2021-09-11 21:42:18
-LastEditTime: 2021-09-21 21:43:46
+LastEditTime: 2021-10-15 23:23:16
 LastEditors: FunctionSir
-Description: 起始
+Description: 开始游戏的文件
 FilePath: /Trknights/start.py
 '''
 
 import os
 import getch
 import math
-import mosc
+import cpsc
 
 
 def play():
@@ -44,9 +44,9 @@ while os.path.isfile("data/first.lck") == False:
     for i in range(hCenter-outLine+1):
         print()
     print(("版本："+version).center(width-3))
-    mosc.clear()
+    cpsc.clear()
     first_run()
-    mosc.clear()
+    cpsc.clear()
     exit()
 print("按下[P]来开始游戏".center(width-7))
 print("按下[E]来退出".center(width-5))
@@ -57,9 +57,9 @@ while True:
     i = getch.getch()
     if i == 'p':
         play()
-        mosc.clear()
+        cpsc.clear()
         exit()
     elif i == 'e':
-        mosc.clear()
+        cpsc.clear()
         exit()
 print("[EOF]")  # 正常情况下不应执行至输出EOF。

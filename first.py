@@ -1,14 +1,14 @@
 '''
 Author: FunctionSir
 Date: 2021-09-21 09:43:20
-LastEditTime: 2021-09-21 21:26:11
+LastEditTime: 2021-10-15 23:17:20
 LastEditors: FunctionSir
-Description: 第一次运行
+Description: 第一次运行则执行
 FilePath: /Trknights/first.py
 '''
 
 import os
-import mosc
+import cpsc
 import getch
 
 
@@ -18,7 +18,7 @@ def start():
     while True:
         ch = getch.getch()
         if ch == "y":
-            print("[I]")
+            print("[I]开始进行")
         elif ch == "n":
             print("[I]用户已取消")
             break
