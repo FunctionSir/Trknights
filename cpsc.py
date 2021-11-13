@@ -1,7 +1,7 @@
 '''
 Author: FunctionSir
 Date: 2021-09-21 09:35:07
-LastEditTime: 2021-10-16 22:13:16
+LastEditTime: 2021-11-13 23:01:30
 LastEditors: FunctionSir
 Description: CrossPlatformSystemCommands，自动判断操作系统的系统并执行指令
 FilePath: /Trknights/cpsc.py
@@ -13,45 +13,85 @@ import ufio
 
 
 def is_win():
-    winString = "Windows"
-    if platform.system() == winString:
-        return(True)
+    r = False
+    winSymbol = "Windows"
+    if os.path.isfile("thisiswindows.lck"):
+        r = True
+    elif os.path.isfile("thisisnotwindows.lck"):
+        r = False
+    else:
+        if platform.system() == winSymbol:
+            r = True
+        else:
+            r = False
+    return r
 
 
 def clear():
+    r = -32768
     winCmd = "cls"
     unixLikeCmd = "clear"
     if is_win():
-        os.system(winCmd)
+        r = os.system(winCmd)
     else:
-        os.system(unixLikeCmd)
-    return(platform.system())
+        r = os.system(unixLikeCmd)
+    return r
 
 
 def mkfile(path, name):
-    winCmd = "copy nul "  # 别忘记了结尾的空格，那很重要！
-    unixLikeCmd = "touch "  # 别忘记了结尾的空格，那很重要！
+    r = -32768
+    path = ufio.path_proc(path, True)
+    winCmd = "copy nul " + path + name
+    unixLikeCmd = "touch " + path + name
     if is_win():
-        os.system(winCmd+ufio.path_proc(path, True)+name)
+        r = os.system(winCmd)
     else:
-        os.system(unixLikeCmd+ufio.path_proc(path, True)+name)
+        r = os.system(unixLikeCmd)
+    return r
 
 
 def mkdir(path, name):
-    winCmd = "mkdir "
-    unixLikeCmd = "mkdir "
+    r = -32768
     path = ufio.path_proc(path, True)
+    winCmd = "mkdir " + path + name
+    unixLikeCmd = "mkdir " + path + name
     if is_win():
-        os.system(winCmd+path+name)
+        r = os.system(winCmd)
     else:
-        os.system(unixLikeCmd+path+name)
+        r = os.system(unixLikeCmd)
+    return r
 
 
 def rmfile(path, name):
-    winCmd = "del "  # 别忘记了结尾的空格，那很重要！
-    unixLikeCmd = "rm "  # 别忘记了结尾的空格，那很重要！
+    r = -32768
     path = ufio.path_proc(path, True)
+    winCmd = "del " + path + name
+    unixLikeCmd = "rm " + path + name
     if is_win():
-        os.system(winCmd+path+name)
+        r = os.system(winCmd)
     else:
-        os.system(unixLikeCmd+path+name)
+        r = os.system(unixLikeCmd)
+    return r
+
+
+def ping(dest):
+    r = -32768
+    winCmd = "ping " + dest
+    unixLikeCmd = "ping -c 4 " + dest
+    if is_win():
+        r = os.system(winCmd)
+    else:
+        r = os.system(unixLikeCmd)
+    return r
+
+
+def more(path, name):
+    r = -32768
+    path = ufio.path_proc(path, True)
+    winCmd = "more " + path + name
+    unixLikeCmd = "more " + path + name
+    if is_win():
+        r = os.system(winCmd)
+    else:
+        r = os.system(unixLikeCmd)
+    return r
